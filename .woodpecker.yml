@@ -1,5 +1,5 @@
 when:
-  - event: [pull_request,pull_request_closed]
+  - event: [pull_request_closed]
     branch: main
   - event: [push]
     branch:
