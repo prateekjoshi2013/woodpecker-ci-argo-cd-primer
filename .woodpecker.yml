@@ -24,7 +24,7 @@ steps:
         - "latest"  # Tags for the image (optional)
         - "${CI_COMMIT_REF_NAME}"  # Optional: You can tag with branch name or commit hash
       username:
-        from_secret: docker-username
+        from_secret: DOCKER_USERNAME
       password:
-        from_secret: docker-password
+        from_secret: DOCKER_PASSWORD
 
