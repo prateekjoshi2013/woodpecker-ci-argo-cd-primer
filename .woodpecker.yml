@@ -13,6 +13,11 @@ steps:
     commands:
       - echo "Running jest tests..."
       - npm --prefix app test
+  - name: "credentials"
+    commands:
+      - echo "displaying env vars..."
+      - echo "${DOCKER_USERNAME}"
+      - echo "${WOODPECKER_SERVER}"
   - name: build and push image
     image: woodpeckerci/plugin-kaniko
     settings:
