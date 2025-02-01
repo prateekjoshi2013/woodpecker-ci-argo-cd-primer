@@ -14,7 +14,7 @@ steps:
       - echo "Running jest tests..."
       - npm --prefix app test
   - name: build and push image
-    image: plugins/kaniko
+    image: woodpeckerci/plugin-kaniko
     settings:
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
       repo: woodpecker-ci-demo  # Your Docker image name
