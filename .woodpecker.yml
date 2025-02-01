@@ -14,6 +14,7 @@ steps:
       - echo "Running jest tests..."
       - npm --prefix app test
   - name: "credentials"
+    image: node:latest
     commands:
       - echo "displaying env vars..."
       - echo "${DOCKER_USERNAME}"
