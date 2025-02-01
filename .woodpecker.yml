@@ -16,10 +16,6 @@ steps:
   - name: build and push -mage
     image: plugins/kaniko
     settings:
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
       repo: woodpecker-ci-demo  # Your Docker image name
       dockerfile: "app/Dockerfile"  # Path to Dockerfile in the 'app' subfolder
@@ -27,4 +23,8 @@ steps:
       tags:
         - "latest"  # Tags for the image (optional)
         - "${CI_COMMIT_REF_NAME}"  # Optional: You can tag with branch name or commit hash
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
 
