@@ -15,10 +15,14 @@ steps:
       - npm --prefix app test
   - name: "credentials"
     image: node:latest
+    environment:
+      DOCKER_USERNAME: "prateekjoshi2013"
+      WOODPECKER_SERVER: "${WOODPECKER_SERVER}"
     commands:
       - echo "displaying env vars..."
-      - echo "${DOCKER_USERNAME}"
-      - echo "${WOODPECKER_SERVER}"
+      - echo $DOCKER_USERNAME
+      - echo $WOODPECKER_SERVER
+      - env
   - name: build and push image
     image: woodpeckerci/plugin-kaniko
     settings:
