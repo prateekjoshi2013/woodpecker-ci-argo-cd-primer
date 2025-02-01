@@ -16,8 +16,10 @@ steps:
   - name: build and push -mage
     image: plugins/kaniko
     settings:
-      username: ${DOCKER_USERNAME}  # Docker Hub username or registry credentials
-      password: ${DOCKER_PASSWORD}  # Docker Hub password or registry credentials
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
       repo: woodpecker-ci-demo  # Your Docker image name
       dockerfile: "app/Dockerfile"  # Path to Dockerfile in the 'app' subfolder
