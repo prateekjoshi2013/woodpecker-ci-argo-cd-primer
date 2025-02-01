@@ -14,5 +14,5 @@ steps:
   - name: test
     image: node:latest
     commands:
-      - echo "Running tests..."
+      - echo "Running jest tests..."
       - npm --prefix app test
