@@ -1,6 +1,9 @@
 when:
-  - event: [pull_request,push]
-    branch: [main, feature/*]
+  - event: [pull_request,pull_request_closed]
+    branch: main
+  - event: [push]
+    branch:
+      exclude: [main]
 
 steps:
   - name: build
