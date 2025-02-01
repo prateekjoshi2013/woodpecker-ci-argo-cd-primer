@@ -14,8 +14,6 @@ cluster-start:
 cluster-stop:
 	minikube stop
 
-
-
 inst-nfs:
 	helm upgrade --install \
     --namespace kube-system \
