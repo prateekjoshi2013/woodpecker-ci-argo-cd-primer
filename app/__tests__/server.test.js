@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server'); // Import the app
+const app = require('../index'); // Import the app
 
 describe('Express Server', () => {
     it('should return a 200 status and the correct message', async () => {
