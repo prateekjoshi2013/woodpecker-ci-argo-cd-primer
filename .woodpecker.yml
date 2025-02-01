@@ -17,7 +17,7 @@ steps:
     image: woodpeckerci/plugin-kaniko
     settings:
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
-      repo: woodpecker-ci-demo  # Your Docker image name
+      repo: ${DOCKER_USERNAME}/woodpecker-ci-demo  # Your Docker image name
       dockerfile: "app/Dockerfile"  # Path to Dockerfile in the 'app' subfolder
       context: "app"  # Build context is the 'app' subfolder where your Dockerfile and app code are located
       tags:
