@@ -19,13 +19,10 @@ steps:
       username: ${DOCKER_USERNAME}  # Docker Hub username or registry credentials
       password: ${DOCKER_PASSWORD}  # Docker Hub password or registry credentials
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
-      repo: ${DOCKER_USERNAME}/woodpecker-ci-demo  # Your Docker image name
+      repo: woodpecker-ci-demo  # Your Docker image name
       dockerfile: "app/Dockerfile"  # Path to Dockerfile in the 'app' subfolder
       context: "app"  # Build context is the 'app' subfolder where your Dockerfile and app code are located
       tags:
         - "latest"  # Tags for the image (optional)
         - "${CI_COMMIT_REF_NAME}"  # Optional: You can tag with branch name or commit hash
 
-    environment:
-      DOCKER_USERNAME: ${DOCKER_USERNAME}
-      DOCKER_PASSWORD: ${DOCKER_PASSWORD}
