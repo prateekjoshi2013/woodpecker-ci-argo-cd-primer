@@ -13,3 +13,13 @@ steps:
     commands:
       - echo "Running jest tests..."
       - npm --prefix app test
+  - name: test
+    image: plugins/kaniko
+    settings:
+      repo: prateekjoshi2013/woodpecker-ci-demo
+      tags: latest,v1-${CI_COMMIT_SHA:0:8}
+      dockerfile: app/Dockerfile
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
