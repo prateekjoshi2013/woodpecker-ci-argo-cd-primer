@@ -42,5 +42,7 @@ steps:
       remote: ${CI_REPO_CLONE_SSH_URL}
       force: false
       commit: true
+      ssh_key:
+        from_secret: github_key 
 
 
