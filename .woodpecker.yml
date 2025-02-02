@@ -30,7 +30,6 @@ steps:
   - name: Update deployment.yaml
     image: alpine
     commands:
-      - env
       - apk add yq
       - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_PIPELINE_NUMBER}"' -i app/k8/deployment.yaml
 
