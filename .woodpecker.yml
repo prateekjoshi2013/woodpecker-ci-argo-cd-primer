@@ -21,7 +21,7 @@ steps:
   #     dockerfile: app/Dockerfile
   #     context: app
   #     platforms: linux/amd64,linux/arm64/v8
-  #     tag: "${CI_COMMIT_REF_NAME}"
+  #     tag: "${CI_PIPELINE_NUMBER}"
   #     username:
   #       from_secret: docker-username
   #     password:
@@ -32,7 +32,7 @@ steps:
     commands:
       - env
       - apk add yq
-      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:"' -i app/k8/deployment.yaml
+      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_PIPELINE_NUMBER}"' -i app/k8/deployment.yaml
 
 
   - name: push commit
