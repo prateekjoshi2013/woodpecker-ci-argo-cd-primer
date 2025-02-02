@@ -11,7 +11,8 @@ cluster-setup:
 cluster-start:
 	minikube start
 
-
+cluster-stop:
+	minikube stop
 
 inst-nfs:
 	helm upgrade --install \
