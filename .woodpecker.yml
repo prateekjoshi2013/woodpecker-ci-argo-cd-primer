@@ -44,7 +44,7 @@ steps:
   - name: push commit
     image: appleboy/drone-git-push
     settings:
-      branch: ${CI_COMMIT_SOURCE_BRANCH}
+      branch: ${CI_COMMIT_BRANCH}
       remote: ${CI_REPO_CLONE_SSH_URL}
       commit_message: "[CI SKIP] bumping deployment version"
       force: true
