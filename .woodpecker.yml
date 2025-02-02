@@ -16,6 +16,7 @@ steps:
   - name: build and push image
     image: woodpeckerci/plugin-kaniko
     settings:
+      dry-run: true
       registry: "docker.io"  # Docker registry URL (can be Docker Hub or any other registry)
       repo: "${DOCKER_USERNAME}/woodpecker-ci-demo"  # Your Docker image name
       dockerfile: "app/Dockerfile"  # Path to Dockerfile in the 'app' subfolder
