@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-node-app
-          image: prateekjoshi2013/woodpecker-ci-demo:140
+          image: prateekjoshi2013/woodpecker-ci-demo:144
           ports:
             - containerPort: 3000
 ---
@@ -33,4 +33,4 @@ spec:
   template:
     spec:
       containers:
-        - image: prateekjoshi2013/woodpecker-ci-demo:140
+        - image: prateekjoshi2013/woodpecker-ci-demo:144
