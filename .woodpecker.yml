@@ -31,7 +31,7 @@ steps:
   - name: update deployment.yaml
     image: mikefarah/yq
     commands:
-      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_COMMIT_REF_NAME}"' -i deployment.yaml
+      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_COMMIT_REF_NAME}"' -i app/k8/deployment.yaml
 
   - name: push commit
     image: appleboy/drone-git-push
