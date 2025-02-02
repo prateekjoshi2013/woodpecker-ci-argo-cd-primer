@@ -14,7 +14,7 @@ describe('Express Server', () => {
         expect(response.status).toBe(200);
         
         // Check the response body
-        expect(response.text).toBe('Hello, World! This is an updated Node.js app!');
+        expect(response.text).toBe('Hello, World! This is an updated v1 Node.js app!');
     });
 
     afterAll(() => {
