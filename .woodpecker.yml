@@ -14,23 +14,23 @@ steps:
       - echo "Running jest tests..."
       - npm --prefix app test
 
-  - name: build-and-push
-    image: woodpeckerci/plugin-docker-buildx
-    settings:
-      repo: docker.io/${CI_REPO_OWNER}/woodpecker-ci-demo
-      dockerfile: app/Dockerfile
-      context: app
-      platforms: linux/amd64,linux/arm64/v8
-      tag: "${CI_COMMIT_REF_NAME}"
-      username:
-        from_secret: docker-username
-      password:
-        from_secret: docker-password
+  # - name: build-and-push
+  #   image: woodpeckerci/plugin-docker-buildx
+  #   settings:
+  #     repo: docker.io/${CI_REPO_OWNER}/woodpecker-ci-demo
+  #     dockerfile: app/Dockerfile
+  #     context: app
+  #     platforms: linux/amd64,linux/arm64/v8
+  #     tag: "${CI_COMMIT_REF_NAME}"
+  #     username:
+  #       from_secret: docker-username
+  #     password:
+  #       from_secret: docker-password
 
   - name: Update deployment.yaml
     image: mikefarah/yq
     commands:
-      - chmod 777 app/k8/deployment.yaml  # Give all permissions to the file
+      - ls # Give all permissions to the file
       - yq eval '.spec.template.spec.containers[0].image = "********/woodpecker-ci-demo:"' -i app/k8/deployment.yaml
 
   - name: push commit
