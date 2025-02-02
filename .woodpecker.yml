@@ -1,6 +1,5 @@
 when:
-  - event: [pull_request]
-    branch: main
+  - event: [push]
 
 steps:
   - name: print commit message
