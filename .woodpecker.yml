@@ -38,6 +38,7 @@ steps:
     commands:
       - apk add yq
       - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_PIPELINE_NUMBER}"' -i app/k8/deployment.yaml
+      - rm -rf app/node_modules
 
 
   - name: push commit
