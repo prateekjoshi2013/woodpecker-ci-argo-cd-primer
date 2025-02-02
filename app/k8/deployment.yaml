@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: my-node-app
-          image: prateekjoshi2013/woodpecker-ci-demo:107
+          image: prateekjoshi2013/woodpecker-ci-demo:108
           ports:
             - containerPort: 3000
