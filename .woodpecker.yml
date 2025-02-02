@@ -21,7 +21,7 @@ steps:
       dockerfile: app/Dockerfile
       context: app
       platforms: linux/amd64,linux/arm64/v8
-      tag: ${CI_COMMIT_REF_NAME}
+      tag: "${CI_COMMIT_REF_NAME}"
       username:
         from_secret: docker-username
       password:
@@ -30,7 +30,7 @@ steps:
   - name: Update deployment.yaml
     image: mikefarah/yq
     commands:
-      - chown $(whoami) app/k8/deployment.yaml
+      - chmod 777 app/k8/deployment.yaml  # Give all permissions to the file
       - yq eval '.spec.template.spec.containers[0].image = "********/woodpecker-ci-demo:"' -i app/k8/deployment.yaml
 
   - name: push commit
