@@ -30,8 +30,8 @@ steps:
   - name: Update deployment.yaml
     image: mikefarah/yq
     commands:
-      - ls # Give all permissions to the file
-      - yq eval '.spec.template.spec.containers[0].image = "********/woodpecker-ci-demo:"' -i app/k8/deployment.yaml
+      - yq eval '.spec.template.spec.containers[0].image = "********/woodpecker-ci-demo:"' app/k8/deployment.yaml > updated.yaml
+      - mv updated.yaml app/k8/deployment.yaml
 
   - name: push commit
     image: appleboy/drone-git-push
