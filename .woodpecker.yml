@@ -10,23 +10,17 @@ steps:
       - env
 
   - name: build
-    when:
-      - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
     image: node:latest
     commands:
       - echo "Installing dependencies..."
       - npm --prefix app install 
   - name: test
-    when:
-      - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
     image: node:latest
     commands:
       - echo "Running jest tests..."
       - npm --prefix app test
 
   - name: build-and-push
-    when:
-      - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
     image: woodpeckerci/plugin-docker-buildx
     settings:
       repo: docker.io/${CI_REPO_OWNER}/woodpecker-ci-demo
@@ -40,8 +34,6 @@ steps:
         from_secret: docker-password
 
   - name: Update deployment.yaml
-    when:
-      - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
     image: alpine
     commands:
       - apk add yq
@@ -49,8 +41,6 @@ steps:
 
 
   - name: push commit
-    when:
-      - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
     image: appleboy/drone-git-push
     settings:
       branch: ${CI_COMMIT_SOURCE_BRANCH}
