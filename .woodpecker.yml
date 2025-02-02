@@ -21,10 +21,27 @@ steps:
       dockerfile: app/Dockerfile
       context: app
       platforms: linux/amd64,linux/arm64/v8
-      tag: next
+      tag: "${CI_PIPELINE_NUMBER}"
       username:
         from_secret: docker-username
       password:
         from_secret: docker-password
+
+  - name: Update deployment.yaml
+    image: alpine
+    commands:
+      - apk add yq
+      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_PIPELINE_NUMBER}"' -i app/k8/deployment.yaml
+
+
+  - name: push commit
+    image: appleboy/drone-git-push
+    settings:
+      branch: ${CI_COMMIT_SOURCE_BRANCH}
+      remote: ${CI_REPO_CLONE_SSH_URL}
+      force: true
+      commit: true
+      ssh_key:
+        from_secret: github_key 
 
 
