@@ -3,6 +3,11 @@ when:
     branch: main
 
 steps:
+  - name: print commit message
+    image: busybox
+    commands:
+      - echo "commit msg - ${CI_COMMIT_MESSAGE}"
+
   - name: build
     when:
       - evaluate: 'not (CI_COMMIT_MESSAGE contains "[CI SKIP]")'
