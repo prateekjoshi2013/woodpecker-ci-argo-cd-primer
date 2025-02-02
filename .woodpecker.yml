@@ -14,18 +14,18 @@ steps:
       - echo "Running jest tests..."
       - npm --prefix app test
 
-  # - name: build-and-push
-  #   image: woodpeckerci/plugin-docker-buildx
-  #   settings:
-  #     repo: docker.io/${CI_REPO_OWNER}/woodpecker-ci-demo
-  #     dockerfile: app/Dockerfile
-  #     context: app
-  #     platforms: linux/amd64,linux/arm64/v8
-  #     tag: "${CI_PIPELINE_NUMBER}"
-  #     username:
-  #       from_secret: docker-username
-  #     password:
-  #       from_secret: docker-password
+  - name: build-and-push
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: docker.io/${CI_REPO_OWNER}/woodpecker-ci-demo
+      dockerfile: app/Dockerfile
+      context: app
+      platforms: linux/amd64,linux/arm64/v8
+      tag: "${CI_PIPELINE_NUMBER}"
+      username:
+        from_secret: docker-username
+      password:
+        from_secret: docker-password
 
   - name: Update deployment.yaml
     image: alpine
@@ -40,7 +40,7 @@ steps:
     settings:
       branch: master
       remote: ${CI_REPO_CLONE_SSH_URL}
-      force: false
+      force: true
       commit: true
       ssh_key:
         from_secret: github_key 
