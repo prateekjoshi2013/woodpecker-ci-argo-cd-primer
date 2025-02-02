@@ -21,10 +21,24 @@ steps:
       dockerfile: app/Dockerfile
       context: app
       platforms: linux/amd64,linux/arm64/v8
-      tag: next
+      tag: ${CI_COMMIT_REF_NAME}
       username:
         from_secret: docker-username
       password:
         from_secret: docker-password
+
+  # Update deployment.yaml with the new image tag
+  - name: update deployment.yaml
+    image: mikefarah/yq
+    commands:
+      - yq eval '.spec.template.spec.containers[0].image = "${CI_REPO_OWNER}/woodpecker-ci-demo:${CI_COMMIT_REF_NAME}"' -i deployment.yaml
+
+  - name: push commit
+    image: appleboy/drone-git-push
+    settings:
+      branch: master
+      remote: ${CI_REPO_CLONE_SSH_URL}
+      force: false
+      commit: true
 
 
