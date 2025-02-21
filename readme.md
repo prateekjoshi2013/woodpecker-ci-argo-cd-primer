@@ -1,4 +1,4 @@
-- first set up github with oauth app details with the ngrok static url:
+- first set up github with oauth app details with the ngrok static url can also be done using cloudflared:
 
 ![alt text](image.png)
 
